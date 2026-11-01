@@ -206,7 +206,7 @@ appear in that window, it fires and logs to **Activity > Triggered Alerts**.
 The 5-minute window is intentional: RDP brute-force attempts are slow and
 spread out, so a short window would miss failures that land just outside it.
 
-![Alert triggered](splunk-alert-triggered.png)
+![Alert triggered](Splunk-Alert-Triggered.png)
 
 This moves the lab from reactive hunting to proactive detection, the core
 of day-to-day SOC monitoring.
