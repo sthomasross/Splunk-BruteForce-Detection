@@ -74,7 +74,7 @@ initial scanning.
 
 nmap -sV 192.168.56.103
 
-![Nmap recon](screenshots/Kali-Nmap-Recon.png)
+![Nmap recon](Kali-Nmap-Recon.png)
 
 ### 2. Service Exposure
 Remote Desktop (RDP) is enabled on the victim to simulate a common
@@ -83,7 +83,7 @@ giving the attacker a service to target.
 
 nmap -p 3389 192.168.56.103
 
-![RDP port open](screenshots/Port-3389-Open.png)
+![RDP port open](Port-3389-Open.png)
 
 ### 3. Credential Attack
 Using Hydra with a small password list, the attacker brute-forces the RDP
@@ -92,7 +92,7 @@ the account.
 
 hydra -l <username> -P passwords.txt rdp://192.168.56.103
 
-![Hydra brute-force](screenshots/Hydra-Password-Crack.png)
+![Hydra brute-force](Hydra-Password-Crack.png)
 
 ### 4. Detection
 The payoff. In Splunk, a search for Windows **Event ID 4625 (failed logon)**
@@ -102,7 +102,7 @@ address (192.168.56.104, the Kali attacker) against one account.
 
 index=* host=Win11-Victim EventCode=4625 Source_Network_Address="192.168.56.104" | stats count by Account_Name, Source_Network_Address
 
-![Splunk detection](screenshots/Splunk-BruteForce-Detection.png)
+![Splunk detection](Splunk-BruteForce-Detection.png)
 
 ----
 
