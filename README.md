@@ -210,3 +210,16 @@ spread out, so a short window would miss failures that land just outside it.
 
 This moves the lab from reactive hunting to proactive detection, the core
 of day-to-day SOC monitoring.
+
+
+## Next Steps
+
+- **Dashboard:** build a monitoring view with panels for failed logons by
+  source IP, a timeline of logon attempts, and a running count of triggered
+  alerts, turning raw events into an at-a-glance SOC console.
+- **Expand detections:** add alerts for other attacker behavior, such as
+  successful logon after repeated failures (4625s followed by a 4624) or
+  Nmap-style port scans.
+- **Enrich the data:** install the Splunk Add-on for Microsoft Windows to
+  normalize event fields and map detections to the MITRE ATT&CK framework
+  (e.g., T1110 Brute Force).
