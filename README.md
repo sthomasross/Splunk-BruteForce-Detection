@@ -182,3 +182,31 @@ index=* host=Win11-Victim EventCode=4625 Source_Network_Address="192.168.56.104"
 - Convert the detection search into a ** saved Splunk alert** that triggers
 - on 5+ failures from on IP within a short window.
 - Build a **dashboard** visualizing failed logons by source IP over time.
+
+### 5. Automated Alerting
+Manual hunting proves the attack is detectable, but a real SOC needs
+detection that runs on its own. The final step converts the detection
+search into a **scheduled Splunk alert** that fires automatically when a
+brute-force pattern appears.
+
+**Alert configuration:**
+
+| Setting | Value |
+|---------|-------|
+| Alert type | Scheduled |
+| Schedule | Every 5 minutes (`*/5 * * * *`) |
+| Time range | Last 5 minutes |
+| Trigger condition | Number of Results is greater than 5 |
+| Throttle | 60 seconds |
+| Action | Add to Triggered Alerts (Medium severity) |
+
+The alert runs every 5 minutes and looks back over the previous 5-minute
+window. If more than 5 failed logons (Event ID 4625) from the attacker's IP
+appear in that window, it fires and logs to **Activity > Triggered Alerts**.
+The 5-minute window is intentional: RDP brute-force attempts are slow and
+spread out, so a short window would miss failures that land just outside it.
+
+![Alert triggered](splunk-alert-triggered.png)
+
+This moves the lab from reactive hunting to proactive detection, the core
+of day-to-day SOC monitoring.
