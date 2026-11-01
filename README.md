@@ -145,7 +145,7 @@ Remote Desktop (RDP_ is enabled on the victim to simulate a common
 real-world exposure. A follow-up scan confirms **port 3389 is not open**,
 giving the attacker a service to target.
 
-![RDP port open](Port-3389_Open.png)
+![RDP port open](Port-3389-Open.png)
 
 ### 3. Credential Attack
 Using Hydra with a small password list, the attacker brute-forces the RDP 
