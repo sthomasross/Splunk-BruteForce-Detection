@@ -138,21 +138,21 @@ map open ports and identify services. On a hardened Windows 11 host, the
 firewall drops the probes and reports all ports as filtered, defeating
 initial scanning.
 
-![Nmap recon](screenshots/Kali-Nmap-Recon.png)
+![Nmap recon](Kali-Nmap-Recon.png)
 
 ### 2. Service Exposure
 Remote Desktop (RDP_ is enabled on the victim to simulate a common
 real-world exposure. A follow-up scan confirms **port 3389 is not open**,
 giving the attacker a service to target.
 
-![RDP port open](screenshots/Port-3389_Open.png)
+![RDP port open](Port-3389_Open.png)
 
 ### 3. Credential Attack
 Using Hydra with a small password list, the attacker brute-forces the RDP 
 login. Hydra works through the list and recovers the valid credentials for
 the account.
 
-![Hydra brute-force](screenshots/Hydra-Password-Crack.png)
+![Hydra brute-force](Hydra-Password-Crack.png)
 
 ### 4. Detection
 The payoff. In Splunk, a search for Windows **Event ID 4625 (failed logon)**
@@ -160,7 +160,7 @@ reveals the attack. Grouping the failures by account and source IP exposes
 the brute-force signature: a burst of failed logins from a single external
 address (192.168.56.104, the Kali attacker) against one account.
 
-![Splunk detection](screenshots/Splunk-BruteForce-Detection.png)
+![Splunk detection](Splunk-BruteForce-Detection.png)
 
 *Detection query:**
 index=* host=Win11-Victim EventCode=4625 Source_Network_Address="192.168.56.104" | stats count by Account_Name, Source_Network_Address
