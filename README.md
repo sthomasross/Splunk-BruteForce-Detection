@@ -104,7 +104,7 @@ index=* host=Win11-Victim EventCode=4625 Source_Network_Address="192.168.56.104"
 
 ![Splunk detection](screenshots/Splunk-BruteForce-Detection.png)
 
----
+----
 
 ## Key Takeaways
 
